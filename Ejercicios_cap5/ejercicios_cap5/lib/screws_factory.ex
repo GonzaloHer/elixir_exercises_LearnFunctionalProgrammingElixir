@@ -55,7 +55,7 @@ defmodule ScrewsFactory3 do
     |> Stream.chunk(10)
     |> Stream.flat_map(&add_head/1)
     |> Stream.chunk(30)
-    #|> Stream.map(&pack_them/1)
+    |> Stream.timer(70)
     |> Enum.each(&output/1)
   end
 
@@ -67,11 +67,6 @@ defmodule ScrewsFactory3 do
   defp add_head(pieces) do
     Process.sleep(100)
     Enum.map(pieces, &("o" <> &1))
-  end
-
-  defp pack_them(pieces) do
-    Process.sleep(70)
-
   end
 
   defp output(screw) do
